@@ -1,0 +1,48 @@
+# ECG Digitization
+ecg-digitization/
+├── data/
+│   ├── raw_scans/                # Original scanned ECG images
+│   ├── preprocessed_images/      # Deskewed and cleaned images
+│   ├── extracted_signals/        # Digitized ECG signals (CSV, MAT)
+│   └── metadata/                 # Grid size, DPI, calibration info
+│
+├── src/
+│   ├── preprocessing/
+│   │   ├── deskew.py             # Deskew paper ECG using affine or Hough
+│   │   └── grid_removal.py       # Remove printed ECG grids
+│   │
+│   ├── extraction/
+│   │   ├── trace_waveform.py     # Trace waveform using contours or edges
+│   │   └── pixel_to_signal.py    # Convert traced pixels to voltage-time
+│   │
+│   ├── reconstruction/
+│   │   └── reconstruct_signal.py # Rescale pixel trace to time-series data
+│   │
+│   ├── postprocessing/
+│   │   └── smooth_signal.py      # Optional: smoothing, filtering, gap-fix
+│   │
+│   ├── utils/
+│   │   ├── image_utils.py        # Helpers for image ops, scale detection
+│   │   └── signal_utils.py       # Helpers for resampling, normalization
+│   │
+│   └── config.py                 # Constants: mm/mV scaling, sampling rate
+│
+├── app/
+│   └── streamlit_app.py          # Web app for uploading + viewing ECGs
+│
+├── ml_models/
+│   ├── feature_extraction.py     # Optional: RR intervals, QRS detection
+│   └── ecg_classifier.py         # Optional: arrhythmia classification
+│
+├── notebooks/
+│   └── 01_pipeline_demo.ipynb    # Step-by-step walk-through of pipeline
+│
+├── tests/
+│   ├── test_deskew.py
+│   └── test_trace_waveform.py
+│
+├── .gitignore
+├── requirements.txt              # `pip install -r requirements.txt`
+├── README.md                     # Project overview, setup, usage
+└── timeline.md                   # Milestones and weekly progress
+
